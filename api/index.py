@@ -6,6 +6,6 @@ app = Flask(__name__)
 def home():
     return 'Hello, World!'
 
-@app.route('/about')
+@app.route('/status')
 def about():
-    return 'About'
+    return {"status": 200, "message": "Flask server running"}
