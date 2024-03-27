@@ -1,5 +1,5 @@
 from flask import Flask
-from main import Websites
+from api.app import Websites
 
 app = Flask(__name__)
 
