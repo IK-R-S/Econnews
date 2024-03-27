@@ -25,4 +25,4 @@ def uol_endoint():
     news = website.uol()
     return {"status": 200, "uol": news}
 
-app.run(debug=True)
+#app.run(debug=True)
