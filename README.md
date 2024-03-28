@@ -1,28 +1,41 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# README
 
-# Flask + Vercel
+Econnews consiste em uma API pública que fornece notícias sobre economia de diferentes fontes midiáticas. A API é acessada através de endpoints específicos e retorna informações atualizadas em tempo real.
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+[!Econnews](https://i.postimg.cc/Yq52PJG8/Econnews.png)
 
-## Demo
+## Funcionalidades
 
-https://flask-python-template.vercel.app/
+- **Endpoint Principal (`/`)**: Este endpoint retorna a página inicial da API, que apresenta informações sobre o projeto e um banner promocional.
 
-## How it Works
+- **Endpoint de Status (`/status`)**: Retorna um JSON indicando se o servidor Flask está em execução.
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+- **Endpoint UOL (`/uol`)**: Retorna notícias de economia obtidas do site UOL. As notícias são obtidas através de web scraping e fornecem títulos e links para artigos relevantes.
 
-## Running Locally
+## Como usar
 
-```bash
-npm i -g vercel
-vercel dev
-```
+Para utilizar esta API, você pode acessar os endpoints mencionados acima através de um cliente HTTP ou navegador da web. Abaixo estão os passos básicos para começar:
 
-Your Flask application is now available at `http://localhost:3000`.
+1. Clone o repositório do projeto do GitHub:
+   ```
+   git clone https://github.com/IK-R-S/Econnews-API.git
+   ```
 
-## One-Click Deploy
+2. Instale as dependências do projeto:
+   ```
+   pip install -r requirements.txt
+   ```
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+3. Inicie o servidor Flask:
+   ```
+   python index.py
+   ```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+4. Acesse os endpoints da API conforme necessário:
+   - Página inicial: [http://localhost:5000/](http://localhost:5000/)
+   - Status do servidor: [http://localhost:5000/status](http://localhost:5000/status)
+   - Notícias do UOL: [http://localhost:5000/uol](http://localhost:5000/uol)
+
+## Contribuição
+
+Este projeto é de código aberto e contribuições são bem-vindas. Se você deseja propor melhorias, corrigir bugs ou adicionar novos recursos, sinta-se à vontade para abrir um problema ou enviar uma solicitação de pull request para o repositório do GitHub.
