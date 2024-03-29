@@ -1,8 +1,9 @@
-# README
+# Econnews
+**Notícias descentralizadas sobre economia e finanças**
 
 Econnews consiste em uma API pública que fornece notícias sobre economia de diferentes fontes midiáticas. A API é acessada através de endpoints específicos e retorna informações atualizadas em tempo real.
 
-[!Econnews](https://i.postimg.cc/Yq52PJG8/Econnews.png)
+![Econnews](https://i.postimg.cc/Yq52PJG8/Econnews.png)
 
 ## Funcionalidades
 
