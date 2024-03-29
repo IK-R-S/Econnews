@@ -1,16 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, redirect
 from api.app import Websites
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect("https://econnews.info")
 
 
 @app.route('/status')
 def about():
-    return {"status": 200, "message": "Flask server running"}
+    return {"status": 200, "message": "Econnews API running"}
 
 
 @app.route('/uol')
