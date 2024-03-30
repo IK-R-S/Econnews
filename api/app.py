@@ -9,24 +9,47 @@ class Websites:
 
 
     def uol(self):
-        url = 'https://economia.uol.com.br/ultimas/'
+        url = 'https://economia.uol.com.br/noticias/'
         req = get(url, headers=headers)
         html = BeautifulSoup(req.text, 'html.parser')
         elements = html.find_all('div', class_='thumbnails-wrapper')
 
-        titles = []
-        links = []
-        response = {}
+        response = []
 
         for element in elements:
             title = element.find('h3').get_text()
             link = element.find('a')['href']
-
-            response.update({title: link})
-            titles.append(title)
-            links.append(link)
+            div_img = element.find_all('div', class_='thumb-layer')
+            for i in div_img:
+                image = i.find('img')['data-src']
+            news = {"title": title, "link": link, "image": image}
+            print(image)
+            response.append(news)
         
         return response
+
+
+
+    def cnn(self):
+        url = 'https://www.cnnbrasil.com.br/economia/'
+        req = get(url, headers=headers)
+        html = BeautifulSoup(req.text, 'html.parser')
+        elements = html.find_all('a', class_='home__list__tag')
+
+        response = []
+
+        for element in elements:
+            title = element.find('h3', class_="news-item-header__title market__new__title").get_text()
+            link = element['href']
+            image = element.find('img')['src']
+            news = {"title": title, "link": link, "image": image}
+            response.append(news)
+        
+        return response
+
+
+    def antagonista(self):
+        pass
 
 
     def g1(self):

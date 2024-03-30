@@ -1,7 +1,8 @@
-from flask import Flask, redirect
-from api.app import Websites
+from flask import Flask, redirect, jsonify
+from app import Websites
 
 app = Flask(__name__)
+websites = Websites()
 
 @app.route('/')
 def index():
@@ -10,13 +11,26 @@ def index():
 
 @app.route('/status')
 def about():
-    return {"status": 200, "message": "Econnews API running"}
+    return jsonify({"status": 200, "message": "Econnews API running"})
 
+@app.route('/news')
+def news():
+    cnn_news = websites.cnn()
+    uol_news = websites.uol()
+    return jsonify({"status": 200, "type": "latest", "news": {"cnn": cnn_news, "uol": uol_news}})
 
-@app.route('/uol')
+@app.route('/news/uol')
 def uol_endoint():
-    website = Websites()
-    news = website.uol()
-    return {"status": 200, "uol": news}
+    news = websites.uol()
+    return jsonify(news)
 
-#app.run(debug=True)
+
+@app.route('/news/cnn')
+def cnn_endoint():
+    news = websites.cnn()
+    return jsonify(news)
+
+'''
+if __name__ == '__main__':
+    app.run(debug=True)
+'''
