@@ -1,6 +1,6 @@
 from flask import Flask, redirect, jsonify
-#from api.app import Websites # production imports
-from app import Websites # dev imports
+from api.app import Websites # production imports
+#from app import Websites # dev imports
 
 app = Flask(__name__)
 websites = Websites()
