@@ -6,8 +6,9 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 class Websites:
     def __init__(self):
         pass
-
-
+    
+    # UOL DESATIVADO
+    '''   
     def uol(self):
         url = 'https://economia.uol.com.br/noticias/'
         req = get(url, headers=headers)
@@ -27,7 +28,7 @@ class Websites:
             response.append(news)
         
         return response
-
+    ''' 
 
 
     def cnn(self):
@@ -47,10 +48,50 @@ class Websites:
         
         return response
 
+    def oantagonista(self):
+        url = 'https://oantagonista.com.br/economia/'
+        req = get(url, headers=headers)
+        html = BeautifulSoup(req.text, 'html.parser')
+        
 
-    def antagonista(self):
-        pass
+        response = []
 
+        titles_array = []
+        titles = html.find_all('h3', class_='ultimas-noticias-area__title-h3')
+        for element in titles:
+            if element.get_text() != 'Mais lidas':
+                title = element.get_text()
+                titles_array.append(title)
+            else:
+                pass
+
+        links_array = []
+        links = html.find_all('a', class_='ultimas-noticias-area__link')
+        for element in links:
+            link = element['href']
+            links_array.append(link)
+
+        # ISSUE: ADD IMAGE SCRAPPER
+        '''
+        images_div = html.find_all('div', class_='row')
+        image_set = set()
+        for element in images_div:
+            figure = element.find('figure')
+            if figure:
+                image_tag = figure.find('img')
+                if image_tag:
+                    image_url = image_tag['src']
+                    if image_url not in image_set:
+                        image_set.add(image_url)
+                        print(image_url)
+        '''                               
+
+        if len(titles_array) == len(links_array):
+            for i in range(0, len(titles_array)):
+                news = {"title": titles_array[i], "link": links_array[i]}
+                response.append(news)
+        
+        return response
 
     def g1(self):
         pass

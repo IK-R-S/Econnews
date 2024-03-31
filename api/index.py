@@ -1,6 +1,6 @@
 from flask import Flask, redirect, jsonify
-from api.app import Websites
-#from app import Websites
+#from api.app import Websites # production imports
+from app import Websites # dev imports
 
 app = Flask(__name__)
 websites = Websites()
@@ -17,21 +17,29 @@ def about():
 @app.route('/news')
 def news():
     cnn_news = websites.cnn()
-    uol_news = websites.uol()
-    return jsonify({"status": 200, "type": "latest", "news": {"cnn": cnn_news, "uol": uol_news}})
+    oantagonista_news = websites.oantagonista()
+    return jsonify({"status": 200, "type": "latest", "news": {"cnn": cnn_news, "o antagonista": oantagonista_news}})
 
+# UOL DESATIVADO
+''' 
 @app.route('/news/uol')
 def uol_endoint():
     news = websites.uol()
     return jsonify(news)
-
+''' 
 
 @app.route('/news/cnn')
 def cnn_endoint():
     news = websites.cnn()
     return jsonify(news)
 
-'''
+
+@app.route('/news/oantagonista')
+def oantagonista_endoint():
+    news = websites.oantagonista()
+    return jsonify(news)
+
+# Devs run this code:
+
 if __name__ == '__main__':
     app.run(debug=True)
-'''
