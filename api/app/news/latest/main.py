@@ -1,9 +1,11 @@
 from bs4 import BeautifulSoup
 from requests import get
 
+# TODO: Create headers list for requests
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"}
 
-class Websites:
+# Classe de notícias mais recentes:
+class Latest:
     def __init__(self):
         pass
     
@@ -93,9 +95,49 @@ class Websites:
         
         return response
 
-    def g1(self):
-        pass
+    def oglobo(self):    
+        url = 'https://oglobo.globo.com/economia/'
+        req = get(url, headers=headers)
+        html = BeautifulSoup(req.text, 'html.parser')
+        elements = html.find_all('div', class_='feed-post-body')
+
+        response = []
+
+        for element in elements:
+            title = element.find('a', class_='feed-post-link').get_text()
+            link = element.find('a', class_='feed-post-link')['href']
+            img_element = element.find('img', class_='bstn-fd-picture-image')
+            if img_element != None:
+                image = img_element['src']
+            
+            news = {"title": title, "link": link, "image": image}
+            response.append(news)
+        
+        return response
 
 
     def infomoney(self):
+        url = 'https://www.infomoney.com.br/ultimas-noticias/'
+        req = get(url, headers=headers)
+        html = BeautifulSoup(req.text, 'html.parser')
+        elements = html.find_all('div', class_='row py-3 item')
+
+        response = []
+
+        for element in elements:
+            title = element.find('a')['title']
+            link = element.find('a')['href']
+            image = element.find('img')['src']
+            news = {"title": title, "link": link, "image": image}
+            response.append(news)
+        
+        return response    
+
+
+    # TODO: Add news source
+    def g1(self):
+        pass
+    def investing(self):
+        pass
+    def cartacapital(self):
         pass

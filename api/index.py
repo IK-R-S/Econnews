@@ -1,9 +1,11 @@
 from flask import Flask, redirect, jsonify
-from api.app import Websites # production import
-#from app import Websites # dev import
+from .app.news.latest.main import Latest # production import
+#from app.news.latest.main import Latest # dev import
 
 app = Flask(__name__)
-websites = Websites()
+
+# News Classes
+latest = Latest() # últimas notícias / Mais recentes
 
 @app.route('/')
 def index():
@@ -16,9 +18,25 @@ def about():
 
 @app.route('/news')
 def news():
-    cnn_news = websites.cnn()
-    oantagonista_news = websites.oantagonista()
-    return jsonify({"status": 200, "type": "latest", "news": {"cnn": cnn_news, "o antagonista": oantagonista_news}})
+    return redirect("/news/recentes")
+
+@app.route('/news/recentes')
+def latest_news():
+    cnn_news = latest.cnn()
+    oglobo_news = latest.oglobo()
+    oantagonista_news = latest.oantagonista()
+    infomoney_news = latest.infomoney()
+
+    return jsonify({
+        "status": 200, 
+        "type": "latest", 
+        "news": {
+            "cnn": cnn_news, 
+            "o globo": oglobo_news, 
+            "o antagonista": oantagonista_news,
+            "infomoney": infomoney_news
+            }
+        })
 
 # UOL DESATIVADO
 ''' 
@@ -28,18 +46,32 @@ def uol_endoint():
     return jsonify(news)
 ''' 
 
-@app.route('/news/cnn')
+@app.route('/news/recentes/cnn')
 def cnn_endoint():
-    news = websites.cnn()
+    news = latest.cnn()
     return jsonify(news)
 
 
-@app.route('/news/oantagonista')
+@app.route('/news/recentes/oantagonista')
 def oantagonista_endoint():
-    news = websites.oantagonista()
+    news = latest.oantagonista()
     return jsonify(news)
+
+
+@app.route('/news/recentes/oglobo')
+def oglobo_endoint():
+    news = latest.oglobo()
+    return jsonify(news)
+
+
+@app.route('/news/recentes/infomoney')
+def infomoney_endoint():
+    news = latest.infomoney()
+    return jsonify(news)
+
 
 # Devs run this code:
-
+'''
 if __name__ == '__main__':
     app.run(debug=True)
+'''
