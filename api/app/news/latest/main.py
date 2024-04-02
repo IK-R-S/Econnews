@@ -8,29 +8,6 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 class Latest:
     def __init__(self):
         pass
-    
-    # UOL DESATIVADO
-    '''   
-    def uol(self):
-        url = 'https://economia.uol.com.br/noticias/'
-        req = get(url, headers=headers)
-        html = BeautifulSoup(req.text, 'html.parser')
-        elements = html.find_all('div', class_='thumbnails-wrapper')
-
-        response = []
-
-        for element in elements:
-            title = element.find('h3').get_text()
-            link = element.find('a')['href']
-            div_img = element.find_all('div', class_='thumb-layer')
-            for i in div_img:
-                image = i.find('img')['data-src']
-            news = {"title": title, "link": link, "image": image}
-            print(image)
-            response.append(news)
-        
-        return response
-    ''' 
 
 
     def cnn(self):
