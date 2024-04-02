@@ -37,8 +37,9 @@ def latest_news():
     infomoney_news = latest.infomoney()
 
     return jsonify({
-        "status": 200, 
-        "type": "latest", 
+        "status": 200,
+        "type": "latest",
+        "date": date, 
         "news": {
             "cnn": {"source": sources['cnn'], "recentes": cnn_news}, 
             "o globo": {"source": sources['o globo'], "recentes": oglobo_news}, 
