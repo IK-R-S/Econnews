@@ -1,9 +1,12 @@
 from flask import Flask, redirect, jsonify
+from flask_cors import CORS
 from datetime import datetime
 #from app.news.latest.main import Latest, NewsManager # Dev Imports
 from .app.news.latest.main import Latest, NewsManager # Production Imports
 
 app = Flask(__name__)
+CORS(app)
+
 date = datetime.now().strftime("%d/%m/%Y")
 
 sources = {
