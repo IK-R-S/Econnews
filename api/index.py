@@ -1,7 +1,7 @@
 from flask import Flask, redirect, jsonify
 from datetime import datetime
-#from app.news.latest.main import Latest, NewsManager # Dev Imports
-from .app.news.latest.main import Latest, NewsManager # Production Imports
+from app.news.latest.main import Latest, NewsManager # Dev Imports
+#from .app.news.latest.main import Latest, NewsManager # Production Imports
 
 app = Flask(__name__)
 date = datetime.now().strftime("%d/%m/%Y")
